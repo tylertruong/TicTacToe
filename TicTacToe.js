@@ -1,7 +1,6 @@
 class TicTacToe {
   constructor(){
     this.moves = [];
-  
     this.startGame();
   }
   
@@ -21,11 +20,20 @@ class TicTacToe {
     this.askForMove('X');
     while(this.moves.length !== 9) {
       this.askForMove('O');
+      if(this.checkWinCondition()) {
+        break;
+      }
       this.askForMove('X');
+      if(this.checkWinCondition()) {
+        break;
+      }
     }
-    console.log(this.moves);
     console.log(this.renderBoard(this.moves));
-    console.log('Cats Game!');
+     if(this.checkWinCondition()) {
+       console.log(this.checkWinCondition(), ' wins!');
+     } else {
+       console.log('Cat Game!');
+     }
 
   }
   
@@ -34,9 +42,10 @@ class TicTacToe {
     
     for (let i = 0; i < winners.length; i++) {
       if(this.isPresent(winners[i][0]) === this.isPresent(winners[i][1]) && this.isPresent(winners[i][1]) === this.isPresent(winners[i][2]) && this.isPresent(winners[i][0]) !== '?') {
-          console.log('The winner is', this.isPresent(winners[i][0]));
+          return this.isPresent(winners[i][0]);
         }
     }
+    return false;
   }
   
   askForMove(type) {
