@@ -1,16 +1,7 @@
 class TicTacToe {
   constructor(){
-    this.moves = [ [ 'X', 1 ],
-  [ 'O', 2 ],
-  [ 'X', 3 ],
-  [ 'O', 4 ],
-  [ 'X', 5 ],
-  [ 'O', 7 ],
-  [ 'X', 8 ],
-  [ 'O', 6 ],
-  [ 'X', 0 ] ];
-    console.log(this.renderBoard(this.moves))
-    //this.startGame();
+    this.moves = [];
+    this.startGame();
   }
   
   renderBoard(moves) {
@@ -31,22 +22,22 @@ class TicTacToe {
       this.askForMove('O');
       this.askForMove('X');
     }
+    console.log(this.renderBoard(this.moves));
     console.log('Game Over!');
 
   }
   askForMove(type) {
     let move;
     while(!(move >= 0 && move <= 8 )) {
-      move = prompt(`${type}, where would you like to go? Board: ${this.moves}`);
+      move = prompt(`${type}, where would you like to go? \n \n Board: \n ${this.renderBoard(this.moves)}`);
       for(let i = 0; i < this.moves.length; i++) {
         if(this.moves[i][1] === move) {
           move = undefined;
         }
       }
     }
-    this.moves.push([type, move]);
-    console.log(this.moves);
-  }
+    this.moves.push([type, parseInt(move)]);
+    }
 }
 
 let game = new TicTacToe();
