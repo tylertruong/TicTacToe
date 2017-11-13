@@ -1,13 +1,28 @@
 class TicTacToe {
   constructor(){
-    this.moves = [];
-    this.startGame();
+    this.moves = [ [ 'X', 1 ],
+  [ 'O', 2 ],
+  [ 'X', 3 ],
+  [ 'O', 4 ],
+  [ 'X', 5 ],
+  [ 'O', 7 ],
+  [ 'X', 8 ],
+  [ 'O', 6 ],
+  [ 'X', 0 ] ];
+    console.log(this.renderBoard(this.moves))
+    //this.startGame();
   }
   
-  // renderBoard(moves) {
-  //   |  |
-  // ------
-  // }
+  renderBoard(moves) {
+   return ` ${this.isPresent(0)}|${this.isPresent(1)}|${this.isPresent(2)} \n _____ \n ${this.isPresent(3)}|${this.isPresent(4)}|${this.isPresent(5)} \n _____ \n ${this.isPresent(6)}|${this.isPresent(7)}|${this.isPresent(8)}\n` ;
+  }
+  
+  isPresent(num){
+    for(let i = 0; i < this.moves.length; i++) {
+      if (this.moves[i][1] === num) return this.moves[i][0];
+    }
+    return '?';
+  }
   
   startGame() {
     console.log('X goes first!');
