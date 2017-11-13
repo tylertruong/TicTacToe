@@ -1,6 +1,7 @@
 class TicTacToe {
   constructor(){
     this.moves = [];
+  
     this.startGame();
   }
   
@@ -16,16 +17,28 @@ class TicTacToe {
   }
   
   startGame() {
-    console.log('X goes first!');
+    console.log('Game starting!');
     this.askForMove('X');
     while(this.moves.length !== 9) {
       this.askForMove('O');
       this.askForMove('X');
     }
+    console.log(this.moves);
     console.log(this.renderBoard(this.moves));
-    console.log('Game Over!');
+    console.log('Cats Game!');
 
   }
+  
+  checkWinCondition() {
+    const winners = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    
+    for (let i = 0; i < winners.length; i++) {
+      if(this.isPresent(winners[i][0]) === this.isPresent(winners[i][1]) && this.isPresent(winners[i][1]) === this.isPresent(winners[i][2]) && this.isPresent(winners[i][0]) !== '?') {
+          console.log('The winner is', this.isPresent(winners[i][0]));
+        }
+    }
+  }
+  
   askForMove(type) {
     let move;
     while(!(move >= 0 && move <= 8 )) {
